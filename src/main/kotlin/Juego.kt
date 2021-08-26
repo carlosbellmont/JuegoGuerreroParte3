@@ -1,10 +1,10 @@
 class Juego {
 
-    var guerrero = Guerreo()
     var listaAdversario = mutableListOf<Adversario>()
 
     fun iniciarJuego() {
-        guerrero = Guerreo()
+        println("Introduce el nombre de tu jugador: ")
+        val guerrero = Guerrero(readLine().toString())
         listaAdversario = crearListaDeAdversarios()
 
         listaAdversario.forEach { adversario ->
@@ -18,16 +18,20 @@ class Juego {
                 }
             } while (!(adversario.haMuerto() || guerrero.haMuerto()))
         }
-        if (guerrero.haMuerto()) println("El mal ha vencido") else println("El bien ha vencido")
+        if (guerrero.haMuerto()) {
+            println("El mal ha vencido")
+        } else {
+            println("El bien ha vencido")
+            guerrero.guardarVictoria()
+        }
+        guerrero.gestionarFinalPartida()
     }
 
 
     private fun crearListaDeAdversarios(): MutableList<Adversario> {
-        return MutableList<Adversario>(10){
+        return MutableList(10){
             Adversario(it)
         }
     }
-
-
 
 }

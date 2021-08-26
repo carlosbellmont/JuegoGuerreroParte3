@@ -8,14 +8,14 @@ class Adversario(numeroDeEnemigo : Int) {
     val nombre = "${javaClass.name} $numeroDeEnemigo"
 
 
-    fun recibirAtaque(daño : Int) {
-        println("El $nombre ha recibido $daño puntos de daño")
-        vida -= daño
+    fun recibirAtaque(dano : Int) {
+        println("El $nombre ha recibido $dano puntos de daño")
+        vida -= dano
         if (haMuerto()) println("El $nombre ha muerto") else println("A $nombre le quedan $vida")
 
     }
 
-    fun atacar(guerreo: Guerreo) {
+    fun atacar(guerreo: Guerrero) {
         val ataque = calcularAtaque()
         println("El $nombre ataca con $ataque puntos de daño")
         guerreo.recibirAtaque(ataque)
